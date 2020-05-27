@@ -26,4 +26,7 @@ hs_err_pid*
 /.idea/compiler.xml
 /.idea/misc.xml
 /.idea/workspace.xml
+/.idea/vcs.xml
+/.idea/modules.xml
+/.idea/data-structures-and-algorithms.iml
 /data-structures-and-algorithms.iml

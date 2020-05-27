@@ -33,7 +33,23 @@ public class Sort1 {
     selectSort(array);
     System.out.println(Arrays.toString(array));
     System.out.println(verify(array));
+    //归并排序
+    array = getRandomArray(10);
+    System.out.println(Arrays.toString(array));
+    System.out.println(verify(array));
+    mergeSort(array);
+    System.out.println(Arrays.toString(array));
+    System.out.println(verify(array));
+    //快速排序
+    array = getRandomArray(10);
+    System.out.println(Arrays.toString(array));
+    System.out.println(verify(array));
+    quickSort(array);
+    System.out.println(Arrays.toString(array));
+    System.out.println(verify(array));
+
   }
+
 
   private static int[] getRandomArray(int length) {
     int[] array = new int[length];
@@ -125,4 +141,80 @@ public class Sort1 {
       }
     }
   }
+
+  private static void mergeSort(int[] array) {
+    mergeSortStep(array, 0, array.length - 1);
+  }
+
+  private static void mergeSortStep(int[] array, int start, int end) {
+    if (start >= end) {
+      return;
+    }
+    int middle = (start + end) / 2;
+    mergeSortStep(array, start, middle);
+    mergeSortStep(array, middle + 1, end);
+    mergeSort(array, start, middle, end);
+  }
+
+  private static void mergeSort(int[] array, int start, int middle, int end) {
+    int[] temp = new int[end - start + 1];
+    int i = start;
+    int j = middle + 1;
+    int k = 0;
+    while (i <= middle && j <= end) {
+      if (array[i] < array[j]) {
+        temp[k++] = array[i++];
+      } else {
+        temp[k++] = array[j++];
+      }
+    }
+    while (i <= middle) {
+      temp[k++] = array[i++];
+    }
+    while (j <= end) {
+      temp[k++] = array[j++];
+    }
+    for (int i1 = 0; i1 < temp.length; i1++) {
+      array[start + i1] = temp[i1];
+    }
+  }
+
+  private static void quickSort(int[] array) {
+    quickSortStep(array, 0, array.length - 1);
+  }
+
+  private static void quickSortStep(int[] array, int start, int end) {
+    if (start >= end) {
+      return;
+    }
+    int middle = partition(array, start, end);
+    quickSortStep(array, start, middle - 1);
+    quickSortStep(array, middle + 1, end);
+  }
+
+  private static int partition(int[] array, int start, int end) {
+    int i = start;
+    int j = end;
+    int partition = array[start];
+    while (i != j) {
+      // 从右往左找到第一个小于分区值的位置
+      while (array[j] >= partition && i < j) {
+        j--;
+      }
+      // 从左往右找到第一个大于分区值的位置
+      while (array[i] <= partition && i < j) {
+        i++;
+      }
+      // 交换
+      if (i < j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+    }
+    array[start] = array[i];
+    array[i] = partition;
+    return i;
+  }
+
 }
