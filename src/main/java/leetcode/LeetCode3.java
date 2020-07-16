@@ -5,7 +5,7 @@ public class LeetCode3 {
     public static void main(String[] args) {
         System.out.println(changeToZshape("PAYPALISHIRING", 3));
         System.out.println();
-        System.out.println(changeToZshape("PAYPALISHIRING", 4));
+        System.out.println(changeToZshape("DSRWFSFWRQDWQ", 4));
     }
 
     /**
@@ -63,17 +63,15 @@ public class LeetCode3 {
     }
 
     private static String printArray(Character[][] chars) {
-        int length = chars.length;
         StringBuilder all = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            Character[] aChar = chars[i];
+        for (Character[] aChar : chars) {
             StringBuilder s = new StringBuilder();
-            for (int i1 = 0; i1 < aChar.length; i1++) {
-                if (aChar[i1] == null) {
+            for (Character character : aChar) {
+                if (character == null) {
                     s.append("   ");
                 } else {
-                    all.append(aChar[i1]);
-                    s.append(" ").append(aChar[i1]).append(" ");
+                    all.append(character);
+                    s.append(" ").append(character).append(" ");
                 }
             }
             System.out.println(s);
