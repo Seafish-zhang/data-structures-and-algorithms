@@ -20,10 +20,7 @@ public class LeetCode1 {
         System.out.println("随机数组1 : " + Arrays.toString(num1));
         int[] num2 = getNumArray(random.nextInt(5) + 1);
         System.out.println("随机数组2 : " + Arrays.toString(num2));
-//    int[] num1 = {1, 5, 8, 13, 15};
-//    int[] num2 = {2, 5, 8, 10, 15};
         System.out.println("中位数1 ：" + medianOfTwoSortIntArray(num1, num2));
-        System.out.println("中位数2 ：" + medianOfTwoSortIntArray2(num1, num2));
     }
 
     private static int[] getNumArray(int bound) {
@@ -95,56 +92,5 @@ public class LeetCode1 {
                 return nums2[j];
             }
         }
-    }
-
-    private static double medianOfTwoSortIntArray2(int[] A, int[] B) {
-        int cout = 0;
-        int m = A.length;
-        int n = B.length;
-        // 确保 m < n
-        if (m > n) {
-            int[] temp = A;
-            A = B;
-            B = temp;
-            int tmp = m;
-            m = n;
-            n = tmp;
-        }
-        int iMin = 0, iMax = m, halfLen = (m + n + 1) / 2;
-        while (iMin <= iMax) {
-            cout++;
-            int i = (iMin + iMax) / 2;
-            int j = halfLen - 1;
-            if (i < iMax && B[j - 1] > A[i]) {
-                iMin++;
-            } else if (i > iMin && A[i - 1] > B[j]) {
-                iMax++;
-            } else {
-                int maxLeft = 0;
-                if (i == 0) {
-                    maxLeft = B[j - 1];
-                } else if (j == 0) {
-                    maxLeft = A[i - 1];
-                } else {
-                    maxLeft = Math.max(A[i - 1], B[j - 1]);
-                }
-
-                if ((m + n) % 2 == 1) {
-                    System.out.println("count is" + cout);
-                    return maxLeft;
-                }
-                int minRight = 0;
-                if (i == m) {
-                    minRight = B[j];
-                } else if (j == n) {
-                    minRight = A[i];
-                } else {
-                    minRight = Math.max(B[j], A[i]);
-                    System.out.println("count is" + cout);
-                    return (minRight + maxLeft) / 2.0;
-                }
-            }
-        }
-        return 0.0;
     }
 }
