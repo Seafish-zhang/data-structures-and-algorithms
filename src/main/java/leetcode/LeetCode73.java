@@ -1,7 +1,5 @@
 package leetcode;
 
-import java.util.Arrays;
-
 public class LeetCode73 {
 
 
@@ -11,10 +9,9 @@ public class LeetCode73 {
                 {3, 4, 5, 2},
                 {1, 3, 1, 5}
         };
+        LeetCode48.printlnDoubleArr(arr);
         replaceZero(arr);
-        for (int[] ints : arr) {
-            System.out.println(Arrays.toString(ints));
-        }
+        LeetCode48.printlnDoubleArr(arr);
     }
 
     private static void replaceZero(int[][] arr) {
