@@ -13,7 +13,7 @@ public class LeetCode77 {
         printlnDoubleList(nk);
     }
 
-    private static void printlnDoubleList(List<List<Integer>> listList) {
+    static void printlnDoubleList(List<List<Integer>> listList) {
         System.out.println("{");
         for (List<Integer> list : listList) {
             StringBuilder sb = new StringBuilder();
