@@ -24,7 +24,7 @@ public class LeetCode3 {
 
         int length = ori.length();
         // 算出总共组数
-        int groupCount = 0;
+        int groupCount;
         if (length < rowNum) {
             groupCount = 1;
         } else {
