@@ -2,13 +2,15 @@ package leetcode;
 
 import java.util.Arrays;
 
-public class LeetCode86 {
+public class LeetCode85 {
 
 
     public static void main(String[] args) {
-        System.out.println(max(new char[][]{
-                {'1', '0', '1', '0'},
-                {'1', '0', '1', '1'}
+        System.out.println(maxArea(new char[][]{
+                {'1', '0', '1', '0', '0'},
+                {'1', '0', '1', '1', '1'},
+                {'1', '1', '1', '1', '1'},
+                {'1', '0', '0', '1', '0'}
         }));
     }
 
@@ -23,100 +25,65 @@ public class LeetCode86 {
         int n = arr[0].length;
         int maxArea = 0;
 
-        int[] left = new int[n];
-        int[] right = new int[n];
+
+        // 当前行的构成有效矩形的高
         int[] height = new int[n];
-
-        Arrays.fill(left, 0);
+        // 当前行构成有效矩形的左边界
+        int[] left = new int[n];
+        // 当前行构成有效矩形的右边界
+        int[] right = new int[n];
+        // 最大有效矩形面积
+        int[][] area = new int[m][n];
+        // 初始化,右边界默认为坐标值+1,用于后续使用（right - left） * height 算出面积
+        //Arrays.fill(left, 0);
         Arrays.fill(right, n);
-        Arrays.fill(left, 0);
+        //Arrays.fill(left, 0);
 
+        // 一行一行计算,算出 当前位置（i,j） 使用高度最大的值时，即height[j]时，最大有效矩形面积
+        // 因为如果有不是最高的但是宽更长，则在计算别的位置时会计算到该面积
         for (int i = 0; i < m; i++) {
             int currentLeft = 0;
-            int currentRight = n;
+            int currentRight = 1;
 
             for (int j = 0; j < n; j++) {
                 if (arr[i][j] == '1') {
+                    // 如果当前位置为'1'，则该位置的高在上行结果中+1，即使当前位置高度值最大
                     height[j]++;
-                } else {
-                    height[j] = 0;
-                }
-            }
-
-            for (int j = 0; j < n; j++) {
-                if (arr[i][j] == '1') {
+                    // 获取当前高度值最大有效左边界
                     left[j] = Math.max(left[j], currentLeft);
-                } else {
-                    left[j] = 0;
-                    currentLeft = j + 1;
-                }
-            }
-
-            for (int j = n - 1; j >= 0; j--) {
-                if (arr[i][j] == '1') {
                     right[j] = Math.min(right[j], currentRight);
                 } else {
+                    // 如果当前位置为'0',则此次高无效，重置为0，左边界重置，用于下一轮使用
+                    height[j] = 0;
+                    left[j] = 0;
+                    // 本轮后续有效左边界需要从下一个算起，因为此次为'0'，不可使用
+                    currentLeft = j + 1;
+                    // 左边界重置，用于下一轮使用
                     right[j] = n;
+                    // 本轮右边界有效位置得从本位置左边算起，由于默认+1，即 j - 1 + 1
+                    currentRight = n;
+                }
+            }
+
+            // 右边界，从后面算起
+            for (int j = n - 1; j >= 0; j--) {
+                if (arr[i][j] == '1') {
+                    // 如果当前位置为'1'，则该位置的高在上行结果中+1， 即获取最小有效右边界需要和上行结果比较
+                    right[j] = Math.min(right[j], currentRight);
+                } else {
+                    // 右边界重置，用于下一轮使用
+                    right[j] = n;
+                    // 本轮右边界有效位置得从本位置左边算起，由于默认+1，即 j - 1 + 1
                     currentRight = j;
                 }
             }
 
+            // 算出本行中，每个位置“高”最大时最大有效矩形面积
             for (int j = 0; j < n; j++) {
-                maxArea = Math.max(maxArea, (right[j] - left[j]) * height[j]);
+                area[i][j] = (right[j] - left[j]) * height[j];
+                maxArea = Math.max(maxArea, area[i][j]);
             }
         }
         return maxArea;
-    }
-
-    private static int max(char[][] arr) {
-        int m = arr.length;
-        int n = arr[0].length;
-        int maxArea = 1;
-
-        int[][] area = new int[m][n];
-        for (int i = 0; i < m; i++) {
-            if (arr[i][0] == '1') {
-                area[i][0] = 1;
-            }
-        }
-        for (int j = 0; j < n; j++) {
-            if (arr[0][j] == '1') {
-                area[0][j] = 1;
-            }
-        }
-
-        for (int i = 1; i < m; i++) {
-            for (int j = 1; j < n; j++) {
-                if (arr[i][j] == '1') {
-                    area[i][j] = Math.min(area[i - 1][j - 1], Math.max(area[i][j - 1], area[i - 1][j])) + 1;
-                }
-                maxArea = Math.max(area[i][j], maxArea);
-            }
-        }
-        return maxArea;
-    }
-
-    private static int getArea(String[][] arr, int i, int j, int m, int n) {
-        // 超界或者当前值为0，返回 0
-        if (i < 0 || i == m || j < 0 || j == n || "0".equals(arr[i][j])) {
-            return 0;
-        }
-        int wide = i;
-        int hight = j;
-        while (wide < m && hight < n) {
-            if (arr[wide + 1][hight].equals("1")
-                    && arr[wide][hight + 1].equals("1")
-                    && arr[wide + 1][hight + 1].equals("1")) {
-                wide++;
-                hight++;
-            } else if (arr[wide + 1][hight].equals("1")) {
-                wide++;
-            } else if (arr[wide][hight + 1].equals("1")) {
-                hight++;
-            } else {
-                break;
-            }
-        }
-        return (wide - i) * (hight - 1);
     }
 }
