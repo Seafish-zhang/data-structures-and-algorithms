@@ -28,11 +28,11 @@ public class LeetCode85 {
 
         // 当前行的构成有效矩形的高
         int[] height = new int[n];
-        // 当前行构成有效矩形的左边界
+        // 对应当前行“高”构成有效矩形的左边界
         int[] left = new int[n];
-        // 当前行构成有效矩形的右边界
+        // 对当前行“高”构成有效矩形的右边界
         int[] right = new int[n];
-        // 最大有效矩形面积
+        // 对当前行“高”的最大有效矩形面积
         int[][] area = new int[m][n];
         // 初始化,右边界默认为坐标值+1,用于后续使用（right - left） * height 算出面积
         //Arrays.fill(left, 0);
@@ -49,19 +49,14 @@ public class LeetCode85 {
                 if (arr[i][j] == '1') {
                     // 如果当前位置为'1'，则该位置的高在上行结果中+1，即使当前位置高度值最大
                     height[j]++;
-                    // 获取当前高度值最大有效左边界
+                    // 获取当前高度值最小有效左边界，即左边界值越大越小
                     left[j] = Math.max(left[j], currentLeft);
-                    right[j] = Math.min(right[j], currentRight);
                 } else {
                     // 如果当前位置为'0',则此次高无效，重置为0，左边界重置，用于下一轮使用
                     height[j] = 0;
                     left[j] = 0;
                     // 本轮后续有效左边界需要从下一个算起，因为此次为'0'，不可使用
                     currentLeft = j + 1;
-                    // 左边界重置，用于下一轮使用
-                    right[j] = n;
-                    // 本轮右边界有效位置得从本位置左边算起，由于默认+1，即 j - 1 + 1
-                    currentRight = n;
                 }
             }
 
