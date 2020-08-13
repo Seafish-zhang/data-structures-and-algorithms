@@ -1,10 +1,45 @@
 package structure.tree;
 
-public class RBTree {
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class BinaryTree {
 
 
     public static void main(String[] args) {
 
+    }
+
+    public static void printTree(Node node) {
+        if (node == null) {
+            return;
+        }
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(node);
+        int current = 1;
+        int next = 0;
+        while (!queue.isEmpty()) {
+            Node currentNode = queue.poll();
+            System.out.print(String.format("%-4d", currentNode.data));
+            current--;
+
+            if (currentNode.left != null) {
+                queue.offer(currentNode.left);
+                next++;
+            }
+
+            if (currentNode.right != null) {
+                queue.offer(currentNode.right);
+                next++;
+            }
+
+            if (current == 0) {
+                System.out.println();
+                current = next;
+                next = 0;
+            }
+        }
+        System.out.println();
     }
 
     private static void inOrder(Node node) {
@@ -63,7 +98,6 @@ public class RBTree {
         public Node left;
         public Node right;
         public int data;
-        private boolean color;
         private Node parent;
 
         public Node(int data) {
