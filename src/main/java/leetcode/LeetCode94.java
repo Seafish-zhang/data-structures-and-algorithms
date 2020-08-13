@@ -1,6 +1,6 @@
 package leetcode;
 
-import structure.tree.RBTree;
+import structure.tree.BinaryTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,10 @@ import java.util.Stack;
 public class LeetCode94 {
 
     public static void main(String[] args) {
-        RBTree.Node node1 = new RBTree.Node(1);
-        RBTree.Node node2 = new RBTree.Node(2);
-        RBTree.Node node3 = new RBTree.Node(3);
-        RBTree.Node node4 = new RBTree.Node(4);
+        BinaryTree.Node node1 = new BinaryTree.Node(1);
+        BinaryTree.Node node2 = new BinaryTree.Node(2);
+        BinaryTree.Node node3 = new BinaryTree.Node(3);
+        BinaryTree.Node node4 = new BinaryTree.Node(4);
         node1.left = node2;
         node1.right = node3;
         node3.right = node4;
@@ -28,9 +28,9 @@ public class LeetCode94 {
      * @param root 树根节点
      * @return 中序遍历列表
      */
-    private static List<Integer> inOrder(RBTree.Node root) {
+    private static List<Integer> inOrder(BinaryTree.Node root) {
         List<Integer> result = new ArrayList<>();
-        Stack<RBTree.Node> stack = new Stack<>();
+        Stack<BinaryTree.Node> stack = new Stack<>();
         stack.push(root);
         while (!stack.isEmpty()) {
             while (root.left != null) {
