@@ -28,7 +28,7 @@ public class LeetCode94 {
      * @param root 树根节点
      * @return 中序遍历列表
      */
-    private static List<Integer> inOrder(BinaryTree.Node root) {
+    static List<Integer> inOrder(BinaryTree.Node root) {
         List<Integer> result = new ArrayList<>();
         Stack<BinaryTree.Node> stack = new Stack<>();
         stack.push(root);
