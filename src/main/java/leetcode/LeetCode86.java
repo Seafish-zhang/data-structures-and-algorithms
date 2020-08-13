@@ -2,7 +2,7 @@ package leetcode;
 
 import structure.link.LinkListTest;
 
-public class LeeCode86 {
+public class LeetCode86 {
 
 
     public static void main(String[] args) {
