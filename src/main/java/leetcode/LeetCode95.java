@@ -33,8 +33,11 @@ public class LeetCode95 {
         }
 
         for (int i = start; i <= end; i++) {
+            // 以当前 i 为根节点，所有可能存在的左节点列表
             List<BinaryTree.Node> leftList = matchTree(start, i - 1);
+            // 以当前 i 为根节点，所有可能存在的右节点列表
             List<BinaryTree.Node> rightList = matchTree(i + 1, end);
+            // 组合
             for (BinaryTree.Node left : leftList) {
                 for (BinaryTree.Node right : rightList) {
                     BinaryTree.Node root = new BinaryTree.Node(i);
