@@ -28,7 +28,7 @@ public class LeetCode102 {
      * @param flag 是否锯齿形
      * @return 遍历列表
      */
-    private static List<List<Integer>> levelOrder(BinaryTree.Node root, boolean flag) {
+    static List<List<Integer>> levelOrder(BinaryTree.Node root, boolean flag) {
         List<List<Integer>> result = new ArrayList<>();
 
         if (root == null) {
