@@ -10,6 +10,15 @@ public class LeetCode115 {
         System.out.println(matchSubSequence("babgbag", "bag").size());
     }
 
+    /**
+     * 源字符串中匹配目标字符串的子序列
+     * <p>只能通过删除一些字符且不干扰剩余字符相对位置所组成的新字符串</p>
+     * <p>"ACE"是"ABCDE"的子序列，而"AEC"不是</p>
+     *
+     * @param str    源字符串
+     * @param target 目标字符串
+     * @return 所有匹配的结果
+     */
     private static List<List<String>> matchSubSequence(String str, String target) {
         List<List<String>> result = new ArrayList<>();
         List<String> current = new ArrayList<>();
