@@ -13,20 +13,31 @@ public class LeetCode77 {
         printlnDoubleList(nk);
     }
 
-    static void printlnDoubleList(List<List<Integer>> listList) {
+    public static void printlnDoubleList(List<List<Integer>> listList) {
         System.out.println("{");
         for (List<Integer> list : listList) {
             StringBuilder sb = new StringBuilder();
-            sb.append(" [");
+            sb.append("    [");
             for (Integer integer : list) {
-                sb.append(integer).append(" ");
+                sb.append(integer).append(", ");
             }
-            sb.append("]");
-            System.out.println(sb.toString());
+            String s = sb.toString();
+            if (s.endsWith(", ")) {
+                s = s.substring(0, s.length() - 2);
+            }
+            System.out.println(s + "]");
         }
         System.out.println("}");
     }
 
+    /**
+     * 组合.
+     * <p>返回1...n中所有可能的k个数的组合</p>
+     *
+     * @param n 数字范围整数
+     * @param k 组合中个数
+     * @return 组合的列表
+     */
     private static List<List<Integer>> nk(int n, int k) {
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> current = new ArrayList<>();
