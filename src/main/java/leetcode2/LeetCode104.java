@@ -15,6 +15,7 @@ public class LeetCode104 {
         node3.right = node4;
         node4.left = node5;
         System.out.println(maxDepth(node1));
+        System.out.println(minDepth(node1));
     }
 
     /**
@@ -28,5 +29,19 @@ public class LeetCode104 {
             return 0;
         }
         return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+    }
+
+
+    /**
+     * 二叉树的最小深度.
+     *
+     * @param root 根节点
+     * @return 最小深度
+     */
+    private static int minDepth(BinaryTree.Node root) {
+        if (root == null) {
+            return 0;
+        }
+        return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
     }
 }
