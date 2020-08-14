@@ -13,7 +13,7 @@ public class LeetCode112 {
         System.out.println(pathSum(node1, 20));
     }
 
-    private static BinaryTree.Node getTestTreeNode() {
+    static BinaryTree.Node getTestTreeNode() {
         BinaryTree.Node node1 = new BinaryTree.Node(5);
         BinaryTree.Node node2 = new BinaryTree.Node(4);
         BinaryTree.Node node3 = new BinaryTree.Node(8);
@@ -22,7 +22,8 @@ public class LeetCode112 {
         BinaryTree.Node node6 = new BinaryTree.Node(4);
         BinaryTree.Node node7 = new BinaryTree.Node(7);
         BinaryTree.Node node8 = new BinaryTree.Node(2);
-        BinaryTree.Node node9 = new BinaryTree.Node(1);
+        BinaryTree.Node node9 = new BinaryTree.Node(5);
+        BinaryTree.Node node10 = new BinaryTree.Node(1);
         node1.left = node2;
         node1.right = node3;
         node2.left = node4;
@@ -30,7 +31,8 @@ public class LeetCode112 {
         node3.right = node6;
         node4.left = node7;
         node4.right = node8;
-        node6.right = node9;
+        node6.left = node9;
+        node6.right = node10;
         return node1;
     }
 
