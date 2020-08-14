@@ -10,6 +10,36 @@ public class BinaryTree {
 
     }
 
+    /**
+     * 按层次遍历树
+     *
+     * @param root 根节点
+     * @return 遍历列表
+     */
+    public static void printLevelOrder(BinaryTree.Node root) {
+        if (root == null) {
+            return;
+        }
+        Queue<BinaryTree.Node> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                BinaryTree.Node current = queue.poll();
+                if (current != null) {
+                    sb.append(current.data).append(", ");
+                    queue.offer(current.left);
+                    queue.offer(current.right);
+                } else {
+                    sb.append("null").append(", ");
+                }
+            }
+            String string = sb.toString();
+            System.out.println(string.substring(0, string.length() - 2));
+        }
+    }
+
     public static void printTree(Node node) {
         if (node == null) {
             return;
