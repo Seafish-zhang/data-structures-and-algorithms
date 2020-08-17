@@ -14,7 +14,6 @@ public class BinaryTree {
      * 按层次遍历树
      *
      * @param root 根节点
-     * @return 遍历列表
      */
     public static void printLevelOrder(BinaryTree.Node root) {
         if (root == null) {
@@ -129,6 +128,8 @@ public class BinaryTree {
         public Node right;
         public int data;
         private Node parent;
+        // 同一层级对应右节点，用于116;
+        public Node next;
 
         public Node(int data) {
             this.data = data;
