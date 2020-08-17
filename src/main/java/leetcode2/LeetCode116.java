@@ -22,6 +22,7 @@ public class LeetCode116 {
         node3.left = node6;
         node3.right = node7;
         fillSameLevel(node1);
+        fillSameLevel2(node1);
         BinaryTree.printLevelOrder(node1);
     }
 
@@ -53,6 +54,46 @@ public class LeetCode116 {
                     current = next;
                 }
             }
+        }
+    }
+
+    /**
+     * 填充同一层的兄弟节点.
+     * <p>空间复杂度低</p>
+     *
+     * @param root 根节点
+     */
+    private static void fillSameLevel2(BinaryTree.Node root) {
+        // 下一层级的头节点
+        BinaryTree.Node head = null;
+        BinaryTree.Node prev = null;
+        // 当前节点
+        BinaryTree.Node current = root;
+
+        while (current != null) {
+            while (current != null) {
+                if (current.left != null) {
+                    if (prev != null) {
+                        prev.next = current.left;
+                    } else {
+                        head = current.left;
+                    }
+                    prev = current.left;
+                }
+
+                if (current.right != null) {
+                    if (prev != null) {
+                        prev.next = current.right;
+                    } else {
+                        head = current.right;
+                    }
+                    prev = current.right;
+                }
+                current = current.next;
+            }
+            current = head;
+            head = null;
+            prev = null;
         }
     }
 }
