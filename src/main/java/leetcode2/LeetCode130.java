@@ -19,10 +19,10 @@ public class LeetCode130 {
     }
 
     private static void printDoubleArr(String[][] arr) {
-        System.out.println("{");
+        System.out.println("[");
         for (int i = 0; i < arr.length; i++) {
             StringBuilder sb = new StringBuilder();
-            sb.append(" {");
+            sb.append("    [");
             for (String string : arr[i]) {
                 sb.append(string).append(", ");
             }
@@ -31,14 +31,14 @@ public class LeetCode130 {
                 s = s.substring(0, s.length() - 2);
             }
             if (i == arr.length - 1) {
-                s += "}";
+                s += "]";
             } else {
-                s += "},";
+                s += "],";
             }
             System.out.println(s);
         }
 
-        System.out.println("}");
+        System.out.println("]");
     }
 
 
