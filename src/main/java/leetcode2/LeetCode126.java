@@ -40,6 +40,7 @@ public class LeetCode126 {
             return result;
         }
         List<String> current = new ArrayList<>();
+        // 用于去除重复调用
         List<Integer> usedIndexList = new ArrayList<>();
         current.add(begin);
         chain(result, current, begin, end, wordList, usedIndexList);
@@ -50,7 +51,6 @@ public class LeetCode126 {
                               String target, List<String> wordList, List<Integer> usedIndexList) {
         // 递归终止条件
         if (target.equals(prev)) {
-//            current.add(target);
             result.add(new ArrayList<>(current));
             min = Math.min(min, current.size());
             return;
