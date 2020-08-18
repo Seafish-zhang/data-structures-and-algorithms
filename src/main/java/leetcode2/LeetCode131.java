@@ -6,17 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LeetCode131 {
+
+    private static int min = Integer.MAX_VALUE;
+
     public static void main(String[] args) {
         String sb = "aab";
         List<List<String>> listList = split(sb);
         LeetCode49.printlnDoubleList(listList);
+        min = Integer.MAX_VALUE;
         sb = "aabbcddc";
         listList = split(sb);
         LeetCode49.printlnDoubleList(listList);
-        int min = Integer.MAX_VALUE;
-        for (List<String> list : listList) {
-            min = Math.min(min, list.size());
-        }
         System.out.println(min);
     }
 
@@ -30,6 +30,7 @@ public class LeetCode131 {
     private static void split(List<List<String>> result, List<String> current, String str, int start) {
         if (start == str.length()) {
             result.add(new ArrayList<>(current));
+            min = Math.min(min, current.size());
             return;
         }
         for (int j = start + 1; j < str.length() + 1; j++) {
