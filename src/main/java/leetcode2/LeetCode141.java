@@ -40,6 +40,12 @@ public class LeetCode141 {
 
     /**
      * 返回入环的第一个点
+     * <p>假设一条链入环的第一个点为i，设从头结点到 i 距离为 x，快慢结点碰面位置为 j ，设i-j距离为 y</p>
+     * <p>设置从j通过环到 i 距离为 z</p>
+     * <p>则 slow： 2（x+y） = x+y+z+y ：fast </p>
+     * <p>解得： x = z </p>
+     * <p>那么，如果再来一个结点slow2在slow与fast相遇时，和slow同步同速度前进，那么两者在走了 x 距离后，刚好在 i 结点相遇 </p>
+     * <p>所以，可以因此求出 i 结点</p>
      *
      * @param head 头结点
      * @return 入环的第一个点
