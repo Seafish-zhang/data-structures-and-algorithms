@@ -55,7 +55,7 @@ public class LeetCode133 {
             }
             sb.append("]\n");
             for (UndirectedGraphNode neighbor : neighbors) {
-                sb.append("label : ").append(label).append("neighbors : [");
+                sb.append("label : ").append(neighbor.label).append(" neighbors : [");
                 for (UndirectedGraphNode neighbor1 : neighbor.neighbors) {
                     sb.append(neighbor1.label).append(" ");
                 }
