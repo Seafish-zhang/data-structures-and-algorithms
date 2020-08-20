@@ -2,7 +2,7 @@ package leetcode2;
 
 import structure.link.LinkListTest;
 
-public class LeetCode156 {
+public class LeetCode160 {
 
     public static void main(String[] args) {
         LinkListTest.Node node11 = new LinkListTest.Node(11);
