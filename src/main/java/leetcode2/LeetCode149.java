@@ -21,6 +21,12 @@ public class LeetCode149 {
         System.out.println(maxPointOneLine(points));
     }
 
+    /**
+     * 同一条直线上最多的点.
+     *
+     * @param points 点数组
+     * @return 同一条直线上最多的点数
+     */
     private static int maxPointOneLine(Point[] points) {
         if (points == null) {
             return 0;
