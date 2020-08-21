@@ -2,7 +2,7 @@ package leetcode2;
 
 import java.util.Arrays;
 
-public class LeetCode163 {
+public class LeetCode164 {
     public static void main(String[] args) {
         System.out.println(maxInterval(new int[]{1, 6, 9, 3}));
         System.out.println(maxInterval(new int[]{1, 2, 13, 9, 7}));
