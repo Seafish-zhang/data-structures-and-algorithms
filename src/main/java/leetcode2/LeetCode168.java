@@ -15,6 +15,6 @@ public class LeetCode168 {
             sb.append((char) (i + 'A'));
             num = (num - 1) / 26;
         }
-        return sb.toString();
+        return sb.reverse().toString();
     }
 }
