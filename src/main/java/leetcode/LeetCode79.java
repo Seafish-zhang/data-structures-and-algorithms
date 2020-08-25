@@ -1,5 +1,8 @@
 package leetcode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LeetCode79 {
 
     // 用于去除重复的位置
@@ -14,6 +17,25 @@ public class LeetCode79 {
         System.out.println(existWord(board, "ABCCED"));
         System.out.println(existWord(board, "SEE"));
         System.out.println(existWord(board, "ABCB"));
+        board = new char[][]{
+                {'o', 'a', 'a', 'n'},
+                {'e', 't', 'a', 'e'},
+                {'i', 'h', 'k', 'r'},
+                {'i', 'f', 'l', 'v'}
+        };
+        List<String> list = existWordFromDict(board, new String[]{"oath", "pea", "eat", "rain"});
+        list.forEach(System.out::println);
+
+    }
+
+    private static List<String> existWordFromDict(char[][] board, String[] dict) {
+        List<String> result = new ArrayList<>();
+        for (String s : dict) {
+            if (existWord(board, s)) {
+                result.add(s);
+            }
+        }
+        return result;
     }
 
     /**
