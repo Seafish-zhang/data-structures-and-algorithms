@@ -22,7 +22,7 @@ public class LeetCode206 {
      * @param head 头结点
      * @return 反转后链表
      */
-    private static LinkListTest.Node reverse(LinkListTest.Node head) {
+    static LinkListTest.Node reverse(LinkListTest.Node head) {
         LinkListTest.Node newHead = null;
         while (head != null) {
             LinkListTest.Node next = head.next;
