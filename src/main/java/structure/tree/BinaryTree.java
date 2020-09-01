@@ -7,7 +7,19 @@ public class BinaryTree {
 
 
     public static void main(String[] args) {
-
+        Node node1 = new Node(10);
+        Node node2 = new Node(9);
+        Node node3 = new Node(8);
+        Node node4 = new Node(7);
+        Node node5 = new Node(6);
+        node1.left = node2;
+        node1.right = node3;
+        node2.left = node4;
+        node3.right = node5;
+        inOrder(node1);
+        leftRotate(node3);
+        rightRotate(node5);
+        inOrder(node1);
     }
 
     /**
@@ -15,9 +27,10 @@ public class BinaryTree {
      *
      * @param root 根节点
      */
-    public static void printLevelOrder(BinaryTree.Node root) {
+    public static String printLevelOrder(BinaryTree.Node root) {
+        StringBuilder result = new StringBuilder();
         if (root == null) {
-            return;
+            return "";
         }
         Queue<BinaryTree.Node> queue = new LinkedList<>();
         queue.offer(root);
@@ -28,15 +41,48 @@ public class BinaryTree {
                 BinaryTree.Node current = queue.poll();
                 if (current != null) {
                     sb.append(current.data).append(", ");
+                    result.append(current.data).append(",");
                     queue.offer(current.left);
                     queue.offer(current.right);
                 } else {
                     sb.append("null").append(", ");
+                    result.append("null").append(",");
                 }
             }
             String string = sb.toString();
             System.out.println(string.substring(0, string.length() - 2));
         }
+        String toString = result.toString();
+        return toString.substring(0, toString.length() - 1);
+    }
+
+    /**
+     * 按层级遍历还原
+     *
+     * @param levelOrder 层级遍历
+     * @return 还原树根节点
+     */
+    public static BinaryTree.Node recoverLevelOrder(String levelOrder) {
+        String[] split = levelOrder.split(",");
+        if (split.length == 0) {
+            return null;
+        }
+        Queue<BinaryTree.Node> queue = new LinkedList<>();
+        BinaryTree.Node root = new BinaryTree.Node(Integer.parseInt(split[0].trim()));
+        queue.offer(root);
+        for (int i = 1; i < split.length; i++) {
+            BinaryTree.Node current = queue.poll();
+            assert current != null;
+            if (!split[i].trim().equals("null")) {
+                current.left = new BinaryTree.Node(Integer.parseInt(split[i].trim()));
+                queue.offer(current.left);
+            }
+            if (!split[++i].trim().equals("null")) {
+                current.right = new BinaryTree.Node(Integer.parseInt(split[i].trim()));
+                queue.offer(current.right);
+            }
+        }
+        return root;
     }
 
     public static void printTree(Node node) {
@@ -127,9 +173,9 @@ public class BinaryTree {
         public Node left;
         public Node right;
         public int data;
-        private Node parent;
         // 同一层级对应右节点，用于116;
         public Node next;
+        private Node parent;
 
         public Node(int data) {
             this.data = data;
