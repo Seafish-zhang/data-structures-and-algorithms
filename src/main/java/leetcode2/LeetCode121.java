@@ -12,6 +12,7 @@ public class LeetCode121 {
         System.out.println(buyStock3(arr));
         arr = new int[]{7, 6, 4, 3, 1};
         System.out.println(buyStock3(arr));
+        System.out.println(buyStock4(new int[]{1, 2, 3, 0, 2}));
     }
 
     /**
@@ -89,5 +90,27 @@ public class LeetCode121 {
             }
         }
         return max2 + max1;
+    }
+
+    /**
+     * 买卖股票的最佳时机含冷冻期
+     * <p>冷冻期只卖出股票后无法在下一天买入股票</p>
+     *
+     * @param arr 股票按日价格数组
+     * @return 最大利润
+     */
+    private static int buyStock4(int[] arr) {
+        int sell = 0;
+        int prevSell = 0;
+        int buy = Integer.MIN_VALUE;
+        int prevBuy;
+
+        for (int price : arr) {
+            prevBuy = buy;
+            buy = Math.max(prevSell - price, prevBuy);
+            prevSell = sell;
+            sell = Math.max(prevBuy + price, prevSell);
+        }
+        return sell;
     }
 }
