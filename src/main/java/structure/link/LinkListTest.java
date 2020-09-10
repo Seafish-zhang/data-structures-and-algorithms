@@ -161,6 +161,19 @@ public class LinkListTest {
         return newNode;
     }
 
+    public static Node createListNode(int[] value) {
+        if (value == null || value.length == 0) {
+            return null;
+        }
+        Node head = new Node(value[0]);
+        Node current = head;
+        for (int i = 1; i < value.length; i++) {
+            current.next = new Node(value[i]);
+            current = current.next;
+        }
+        return head;
+    }
+
     public static class Node {
 
         public int value;
