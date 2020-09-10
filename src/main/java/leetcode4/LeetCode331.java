@@ -3,9 +3,9 @@ package leetcode4;
 public class LeetCode331 {
 
     public static void main(String[] args) {
-        System.out.println(vaildPrevOrder("9,3,4,#,#,1,#,#,2,#,6,#,#"));
-        System.out.println(vaildPrevOrder("1,#"));
-        System.out.println(vaildPrevOrder("9,#,#,1"));
+        System.out.println(validPrevOrder("9,3,4,#,#,1,#,#,2,#,6,#,#"));
+        System.out.println(validPrevOrder("1,#"));
+        System.out.println(validPrevOrder("9,#,#,1"));
     }
 
     /**
@@ -15,7 +15,7 @@ public class LeetCode331 {
      * @param str 序列化字符串
      * @return 结果
      */
-    private static boolean vaildPrevOrder(String str) {
+    private static boolean validPrevOrder(String str) {
         String[] split = str.split(",");
         int diff = 1;
         for (String s : split) {
