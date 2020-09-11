@@ -26,7 +26,7 @@ public class LeetCode347 {
             map.put(num, map.getOrDefault(num, 0) + 1);
         }
 
-        Queue<Map.Entry<Integer, Integer>> queue = new PriorityQueue<>(Comparator.comparingInt(Map.Entry::getValue));
+        Queue<Map.Entry<Integer, Integer>> queue = new PriorityQueue<>((o1, o2) -> o2.getValue() - o1.getValue());
 
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             queue.offer(entry);
