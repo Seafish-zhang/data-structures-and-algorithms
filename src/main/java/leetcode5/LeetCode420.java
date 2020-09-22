@@ -1,6 +1,6 @@
 package leetcode5;
 
-public class LeetCode419 {
+public class LeetCode420 {
 
     public static void main(String[] args) {
         System.out.println(strongPasswordChecker("abcdefg"));
