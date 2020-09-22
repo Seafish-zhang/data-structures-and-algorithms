@@ -1,6 +1,6 @@
 package leetcode5;
 
-public class LeetCode429 {
+public class LeetCode430 {
 
     public static void main(String[] args) {
         int i = 1;
