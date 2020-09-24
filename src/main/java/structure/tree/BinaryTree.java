@@ -22,6 +22,30 @@ public class BinaryTree {
         inOrder(node1);
     }
 
+    public static Node buildByIntArr(Integer[] arr) {
+        Node root = new Node(arr[0]);
+        Queue<Node> stack = new LinkedList<>();
+        stack.offer(root);
+        int i = 1;
+        while (i < arr.length) {
+            Node pop = stack.poll();
+            assert pop != null;
+            if (arr[i] != null) {
+                pop.left = new Node(arr[i++]);
+                stack.offer(pop.left);
+            } else {
+                i++;
+            }
+            if (i < arr.length && arr[i] != null) {
+                pop.right = new Node(arr[i++]);
+                stack.offer(pop.right);
+            } else {
+                i++;
+            }
+        }
+        return root;
+    }
+
     /**
      * 按层次遍历树
      *
