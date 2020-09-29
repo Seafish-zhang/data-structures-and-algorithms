@@ -2,7 +2,7 @@ package leetcode5;
 
 import java.util.Arrays;
 
-public class LeetCode492 {
+public class LeetCode493 {
 
     public static void main(String[] args) {
         System.out.println(reversalPair(new int[]{1, 3, 2, 3, 1}));
