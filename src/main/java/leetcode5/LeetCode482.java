@@ -2,6 +2,11 @@ package leetcode5;
 
 public class LeetCode482 {
 
+    public static void main(String[] args) {
+        System.out.println(format("ZZ-WP-AB-CD-CE-KK", 4));
+        System.out.println(format("ZZR-WPB-ABC-CDE-CKE-KKT", 5));
+    }
+
     /**
      * 密钥格式化
      * <p>给定一个密钥字符串s，只包含字母，数字以及‘-’，N个‘-’将字符串分成N+1组</p>
