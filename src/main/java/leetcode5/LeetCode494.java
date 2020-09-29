@@ -1,6 +1,6 @@
 package leetcode5;
 
-public class LeetCode493 {
+public class LeetCode494 {
 
     public static void main(String[] args) {
         System.out.println(targetSum(new int[]{1, 1, 1, 1, 1}, 3));
