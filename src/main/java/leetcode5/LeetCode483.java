@@ -28,7 +28,10 @@ public class LeetCode483 {
         // 求k最小，那么从m最大开始算起
         // 又因为，当 k = n - 1时，一定可以表示为 11,此时m = 2，那么可以直接判断m>=2,必定会有结果
         for (long m = Double.valueOf(Math.log(num + 1) / Math.log(2)).intValue(); m >= 2; m--) {
+            // 根据题目k的下限是2
             long left = 2;
+            // 又 ： n = 1 + k + k^2 + k^3 + ....+ k^(m-1) >  k^(m-1)
+            // 解得 k < n ^ (1/(m-1)) 可以当成k的上限
             long right = Double.valueOf(Math.pow(num, 1.0 / (m - 1))).intValue() + 1;
             while (left < right) {
                 long mid = left + (right - left) / 2;
