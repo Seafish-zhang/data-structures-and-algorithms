@@ -31,7 +31,7 @@ public class LeetCode481 {
         int head = 2;
         int tail = 3;
         int num = 1;
-        int result = 0;
+        int result = 1;
         while (tail < n) {
             for (int i = 0; i < dp[head]; i++) {
                 dp[tail] = num;
