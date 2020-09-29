@@ -22,8 +22,13 @@ public class LeetCode486 {
     private static int helper(int[] nums, int start, int end, Integer[][] mem) {
         if (mem[start][end] == null) {
             mem[start][end] = start == end ?
-                    nums[end] : Math.max(nums[end] - helper(nums, start, end - 1, mem),
-                    nums[start] - helper(nums, start + 1, end, mem));
+                    // 如果只有一个，只能选择它
+                    nums[end] :
+                    // 判断（拿右边再减去（对手最优拿后差值）的差值）
+                    // 和（拿左边再减去（对手最优拿后差值）的差值）的最大值
+                    // 即为最优的时候
+                    Math.max(nums[end] - helper(nums, start, end - 1, mem),
+                            nums[start] - helper(nums, start + 1, end, mem));
         }
         return mem[start][end];
     }
