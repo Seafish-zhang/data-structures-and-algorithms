@@ -1,7 +1,5 @@
 package leetcode4;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.*;
 
 public class LeetCode373 {
@@ -72,7 +70,7 @@ public class LeetCode373 {
         }
 
         @Override
-        public int compareTo(@NotNull LeetCode373.Pair o) {
+        public int compareTo(LeetCode373.Pair o) {
             return this.sum - o.sum;
         }
     }
